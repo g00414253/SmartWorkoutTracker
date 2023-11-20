@@ -9,7 +9,7 @@ body {
 
 /* Style the header */
 #header {
-    background-color:deepskyblue;
+    background-color:royalblue;
     color: black;
     padding: 20px;
     text-align: center;
@@ -71,6 +71,5 @@ body {
 #footer {
     background-color: #f1f1f1;
     padding: 10px;
-    height:;
     text-align: center;
 }
