@@ -5,20 +5,28 @@
 body {
     margin: 0;
     height: 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+    background-image: url("images/GymBack1.jpg");
 }
 
 /* Style the header */
 #header {
-    background-color:royalblue;
-    color: black;
+    color: white;
     padding: 20px;
     text-align: center;
+    font-weight: bolder;
 }
 
 /* Style the top navigation bar */
 #topnav {
     overflow: hidden;
-    background-color: #333;
+    display: flex;
+}
+
+#topnav p{
+    color: #dddddd;
 }
 
 /* Style the topnav links */
@@ -37,27 +45,59 @@ body {
     color: black;
 }
 
+#ExerciseLink{
+}
 /* Create three unequal columns that floats next to each other */
 .column {
     float: left;
     padding: 10px;
+    color: #dddddd;
 }
 
 /* Left and right column */
 .column.side {
     width: 25%;
+    text-align: center;
 }
+
 
 /* Middle column */
 .column.middle {
     width: 50%;
+    text-align: center;
 }
+
+.row{
+    display: flex;
+    height: 100%;
+   background-blend-mode:lighten ;
+}
+
 
 /* Clear floats after the columns */
 .row::after {
     content: "";
     display: table;
     clear: both;
+}
+
+.button {
+    border: black;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.button1 {background-color: green;
+
+}
+.button2 {background-color:red;
+
 }
 
 /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
@@ -69,7 +109,10 @@ body {
 
 /* Style the footer */
 #footer {
-    background-color: #f1f1f1;
     padding: 10px;
+   position: absolute;
+    bottom: 0;
     text-align: center;
+    width: 100%;
+    color: #dddddd;
 }
