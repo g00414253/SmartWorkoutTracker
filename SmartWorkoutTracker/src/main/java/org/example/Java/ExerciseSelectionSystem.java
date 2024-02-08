@@ -58,6 +58,7 @@ public class ExerciseSelectionSystem {
         System.out.println("Enter a exercise: ");
         String choice = sc.nextLine();
 
+        //Switch for exercise choices
         switch (choice) {
             case "Treadmill":
                 Treadmill.setStats();
