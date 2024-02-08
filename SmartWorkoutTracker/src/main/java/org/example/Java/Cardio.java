@@ -1,4 +1,5 @@
 package org.example.Java;
+import java.util.Scanner;
 
 public class Cardio implements Exercise{
     private String name;
@@ -48,19 +49,21 @@ public class Cardio implements Exercise{
         return time;
     }
 
-    public void setTime(double time) {
-        this.time = time;
-    }
-
     public double getDistance() {
         return distance;
     }
 
-    public void setDistance(double distance) {
-        this.distance = distance;
+    public void setStats() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Enter the Distance: ");
+        distance = scanner.nextDouble();
+
+
+        System.out.println("Enter the Time: ");
+       time= scanner.nextInt();
     }
 
-    @Override
     public String toString() {
         return "Cardio{" +
                 "name='" + name + '\'' +
