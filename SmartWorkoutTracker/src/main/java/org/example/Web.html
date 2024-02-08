@@ -2,13 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="10">
+    <!-- refresh page -->
+    <meta http-equiv="refresh" content="100">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
     <title>Smart Workout Tracker</title>
 
-    <link rel="icon" href="images/Icon.png" type="image">
+    <link rel="icon" href="images/icon.jpg" type="image">
     <link rel="stylesheet" href="StyleWeb.css">
+    <script src="Web.js"></script>
 </head>
 
 <body>
@@ -17,43 +19,133 @@
     <h1>Smart Workout Tracker</h1>
 </div>
 
-<div id="topnav">
-    <p>Exercises to select from: </p>
-    <div id="ExerciseLink">
-    <a href="#">Link</a>
-    <a href="#">Link</a>
-    <a href="#">Link</a>
+<div class="navbar">
+    <!-- Drop down menu for lists of exercises -->
+    <div class="dropdown">
+        <button class="dropbtn">Exercises
+            <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+            <a href="#">Link 1</a>
+            <a href="#">Link 2</a>
+            <a href="#">Link 3</a>
         </div>
+    </div>
+    <!-- Section with buttons for different main content displays -->
+    <button class="Selection" type="button" onclick="ShowInfo()" id="btnInfo">
+    <a href="#MainContent">Information</a>
+    </button>
+    <button class="Selection" type="button" onclick="ShowWeight()" id="btnWeight">
+    <a href="#WeightCalculator">Weight Calculator</a>
+    </button>
+    <button class="Selection" type="button" onclick="Show1Rm()" id="btn1Rm">
+    <a href="#1Rm">1 Rep Max</a>
+    </button>
 </div>
 
 <div class="row">
+    <!-- Left hand section using DHT11 for Environment readings -->
     <div class="column side">
         <h2><u> Environmental Data</u></h2>
-        <p><li>Temperature Reading: </li></p>
-        <p><li>Humidity Reading: </li></p>
+        <ol>Temperature Reading: </ol>
+        <ol>Humidity Reading: </ol>
         <h3><u>How your Environment is effecting your performance</u> </h3>
-
-        <p> A message will print in here depending on the environment (High temp and high hum,low temp and low hum,and low and high combinations </p>
     </div>
 
+    <!-- Middle section can display different choices -->
     <div class="column middle">
+
+        <div id ="MainContent">
         <h2><u>Main Content</u></h2>
-        <p> Main will contain all teh information on the sets that have already been done </p>
-        <p> infromation like range of motion previous bests ,times etc...</p>
+        <p> Main will contain all the information on the sets that have already been done </p>
+        <p> information like range of motion previous bests ,times etc...</p>
+        </div>
+
+        <div id="WeightCalculator">
+            <h2><u>Weight Calculator</u></h2>
+            <p>Select between the two options to calculate</p>
+            <p>either what weight is on a bar or to find out</p>
+            <p>what plates to load for a desired weight</p>
+
+            <!--Buttons for selecting which form -->
+            <button class="SelectWeight" type="button" onclick="calculateLoaded()" id="btnLoad">
+                <a href="#Loaded">What Weight?</a>
+            </button>
+            <button class="SelectWeight" type="button" onclick="calculatePlates()" id="btnPlate">
+                <a href="#Plates">How to Load the bar</a>
+            </button>
+
+            <!-- Option if bar is already loaded -->
+            <div id="Loaded">
+                <p>Input what plates are on the bar only count one side</p>
+                <p></p>
+                <label for="25kg">25kg:</label>
+                <input type="number" id="25kg" name="25kg" min="0">
+                <p></p>
+                <label for="20kg">20kg:</label>
+                <input type="number" id="20kg" name="20kg" min="0">
+                <p></p>
+                <label for="15kg">15kg:</label>
+                <input type="number" id="15kg" name="15kg" min="0">
+                <p></p>
+                <label for="10kg">10kg:</label>
+                <input type="number" id="10kg" name="10kg" min="0">
+                <p></p>
+                <label for="5kg">5kg:</label>
+                <input type="number" id="5kg" name="5kg" min="0">
+                <p></p>
+                <label for="2.5kg">2.5kg:</label>
+                <input type="number" id="2.5kg" name="2.5kg" min="0">
+                <p></p>
+                <label for="1.25kg">1.25kg:</label>
+                <input type="number" id="1.25kg" name="1.25kg" min="0">
+                <p></p>
+                <input type="button" value="Calculate Weight" onclick="calculateLoaded()">
+                <p id="resultWeight"></p>
+            </div>
+
+            <!-- Option if you want to know how to load bar -->
+            <div id="Plates">
+                <p>Input the desired weight to load on the bar</p>
+                <label for="WeightIn">Weight:</label>
+                <input type="number" id="WeightIn" name="WeightIn" min="20">
+                <input type="button" value="Calculate Plates needed" onclick="calculatePlates()">
+                <p id="WeightLoad"></p>
+            </div>
+
+        </div>
+
+        <div id="1Rm">
+            <h2><u>1 Rep Max Calculator</u></h2>
+            <p>Enter the Weight and Reps of your set to </p>
+            <p>get an estimate of your current 1 Rep Max</p>
+
+            <form id="repMaxForm">
+                <label for="Weight">Weight:</label>
+                <input type="number" id="Weight" name="Weight" min="0">
+                <p></p>
+                <label for="Reps">Reps:</label>
+                <input type="number" id="Reps" name="Reps" min="0">
+                <p></p>
+                <input type="button" value="Calculate 1 Rep Max" onclick="calculate1RepMax()">
+                <p id="result"></p>
+            </form>
+
+        </div>
     </div>
 
+    <!-- Right Hand side for Rep Counter -->
     <div class="column side">
         <h2><u>Repetition Counter</u> </h2>
         <button class="button button1">Start</button>
         <button class="button button2">Stop</button>
-        <p>A rep counter will display the reps being done during a set and showing that number tilla new set is done </p>
+        <p>A rep counter will display the reps being done during a set and showing that number till a new set is done </p>
     </div>
 </div>
 
 <div id="footer">
     <p>Footer</p>
-</div>
-
+</div>v
 
 </body>
 
