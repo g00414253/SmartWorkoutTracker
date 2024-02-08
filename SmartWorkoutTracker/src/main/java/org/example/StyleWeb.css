@@ -132,16 +132,28 @@ body {
     display: none;
 }
 
+/* Weight Calculator styling */
 .SelectWeight{
     font-size: 16px;
     border: none;
     outline: none;
     color: white;
-    padding: 14px 16px;
-    background-color: inherit;
     font-family: inherit; /* Important for vertical align on mobile phones */
     margin: 0; /* Important for vertical align on mobile phones */
     float: left;
+}
+
+.SelectWeight a {
+    float: left;
+    font-size: 16px;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.SelectWeight a:hover {
+    background-color: red;
 }
 
 #WeightCalculator button{
