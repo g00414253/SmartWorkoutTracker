@@ -1,5 +1,4 @@
 package org.example.Java;
-
 import java.util.Scanner;
 
 public class ExerciseSelectionSystem {

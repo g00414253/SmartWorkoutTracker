@@ -38,7 +38,42 @@ function calculate1RepMax() {
 
     // Add your calculation logic and display the result
     let oneRepMax =  (100 * weight ) / (101.3 - 2.67123 * reps);
+
+//Needed to display 1rm graph
+    google.charts.load('current',{packages:['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+
    return  document.getElementById('result').textContent = 'Your estimated 1 Rep Max is: ' + oneRepMax.toFixed(2);
+}
+
+
+function drawChart() {
+     let weight = document.getElementById('Weight').value;
+     let reps = document.getElementById('Reps').value;
+
+    // Add your calculation logic and display the result
+    let result =  (100 * weight ) / (101.3 - 2.67123 * reps);
+
+// Set Data
+    const data = google.visualization.arrayToDataTable([
+        ['Reps', 'Weight(Kg)'],
+        [result/(1+0.0333*15),15],[result/(1+0.0333*14),14],[result/(1+0.0333*13),13],[result/(1+0.0333*12),12],
+        [result/(1+0.0333*11),11],[result/(1+0.0333*10),10],[result/(1+0.0333*9),9],[result/(1+0.0333*8),8],[result/(1+0.0333*7),7],
+        [result/(1+0.0333*6),6],[result/(1+0.0333*5),5],[result/(1+0.0333*4),4],
+        [result/(1+0.0333*3),3],[result/(1+0.0333*2),2],[result/(1),1]
+    ]);
+
+// Set Options
+    const options = {
+        title: 'Weight vs Reps',
+        hAxis: {title: 'Weight (Kg)'},
+        vAxis: {title: 'Repetitions'},
+        legend: 'none'
+    };
+
+// Draw
+    const chart = new google.visualization.LineChart(document.getElementById('myChart'));
+    chart.draw(data, options);
 }
 
 function calculateLoaded(){

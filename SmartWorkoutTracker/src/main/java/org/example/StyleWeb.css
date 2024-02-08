@@ -178,6 +178,11 @@ body {
     display: none;
 }
 
+#myChart{
+    align-items: center;
+    text-align: center;
+}
+
 
 .row{
     display: flex;
