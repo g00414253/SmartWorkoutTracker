@@ -178,6 +178,29 @@ body {
     display: none;
 }
 
+#Brm{
+    display: none;
+}
+
+#BodyFatCal{
+    display: none;
+}
+
+#Macro{
+    display: none;
+}
+
+.btnUnknownCal{
+    background: none;
+    color: mediumblue;
+    text-align: left;
+    font-size:13px;
+}
+
+#Breakdown {
+    white-space: pre-line; /* or white-space: pre; */
+}
+
 #myChart{
     align-items: center;
     text-align: center;
