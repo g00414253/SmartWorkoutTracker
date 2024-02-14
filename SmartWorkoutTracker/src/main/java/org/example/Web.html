@@ -48,6 +48,15 @@
     <button class="Selection" type="button" onclick="Show1Rm()" id="btn1Rm">
     <a href="#1Rm">1 Rep Max</a>
     </button>
+    <button class="Selection" type="button" onclick="ShowBrm()" id="btnBrm">
+        <a href="#Brm">BRM Calculator</a>
+    </button>
+    <button class="Selection" type="button" onclick="ShowBodyFatCal()" id="btnBfc">
+        <a href="#BodyFatCal">Body fat calculator</a>
+    </button>
+    <button class="Selection" type="button" onclick="ShowMacro()" id="btnMacro">
+        <a href="#Macro">Macro Calculator</a>
+    </button>
 </div>
 
 <div class="row">
@@ -139,8 +148,48 @@
             </form>
             <div id="myChart" style="width:100%; max-width:600px; height:500px;"></div>
         </div>
+
+    <div id="Brm">
+        <p>BRM</p>
     </div>
 
+    <div id="BodyFatCal">
+        <p>Body fat cal</p>
+    </div>
+
+    <div id="Macro">
+        <p>Macro Calculator</p>
+        <label for="Calories">Calories:</label>
+        <input type="number" id="Calories" name="Calories" min="0">
+        <label for="Diet">Select a diet:</label>
+        <select name="Diet" id="Diet">
+            <option value="HighCarb">High Carb (60:25:15)</option>
+            <option value="ModerateCarb">Moderate Diet (50:30:20)</option>
+            <option value="ZoneDiet">Zone Diet (40:30:30)</option>
+            <option value="LowCarb">Low Carb (25:35:40)</option>
+            <option value="KetoDiet">Keto (05:35:60)</option>
+            <option value="Custom">Custom</option>
+        </select>
+        <p></p>
+        <button class="btnUnknownCal" onclick="ShowBrm()">I'm unsure of my daily calorie expenditure??</button>
+
+        <!-- Slider div -->
+        <div class="slidecontainer">
+            <label for="myProtein">Protein:</label>
+            <input type="range" min="0" max="100"  class="slider" id="myProtein"><p></p>
+            <label for="myCarbs">Carbs:</label>
+            <input type="range" min="0" max="100"  class="slider" id="myCarbs"><p></p>
+            <label for="myFats">Fats:</label>
+            <input type="range" min="0" max="100"  class="slider" id="myFats"><p></p>
+        </div>
+
+        <input type="button" value="CalculateMacros" onclick="CalMacro()" >
+        <!-- Div for displaying pie chart -->
+        <div id="piechart"></div>
+        <div id="Breakdown"></div>
+
+    </div>
+    </div>
     <!-- Right Hand side for Rep Counter -->
     <div class="column side">
         <h2><u>Repetition Counter</u> </h2>

@@ -7,6 +7,12 @@ function ShowInfo(){
         .style.display = "none";
     document.getElementById('1Rm')
         .style.display = "none";
+    document.getElementById('Brm')
+        .style.display = "none";
+    document.getElementById('BodyFatCal')
+        .style.display = "none";
+    document.getElementById('Macro')
+        .style.display = "none";
 }
 
 //Displays a weight calculator App
@@ -18,6 +24,12 @@ function ShowWeight(){
         .style.display = "none";
     document.getElementById('1Rm')
         .style.display = "none";
+    document.getElementById('Brm')
+        .style.display = "none";
+    document.getElementById('BodyFatCal')
+        .style.display = "none";
+    document.getElementById('Macro')
+        .style.display = "none";
 }
 
 //Displays a 1Rm App
@@ -28,6 +40,60 @@ function Show1Rm(){
     document.getElementById('MainContent')
         .style.display = "none";
     document.getElementById('WeightCalculator')
+        .style.display = "none";
+    document.getElementById('Brm')
+        .style.display = "none";
+    document.getElementById('BodyFatCal')
+        .style.display = "none";
+    document.getElementById('Macro')
+        .style.display = "none";
+}
+
+function ShowBrm(){
+    document.getElementById('Brm')
+        .style.display = "block";
+
+    document.getElementById('MainContent')
+        .style.display = "none";
+    document.getElementById('WeightCalculator')
+        .style.display = "none";
+    document.getElementById('1Rm')
+        .style.display = "none";
+    document.getElementById('BodyFatCal')
+        .style.display = "none";
+    document.getElementById('Macro')
+        .style.display = "none";
+}
+
+function ShowBodyFatCal(){
+    document.getElementById('BodyFatCal')
+        .style.display = "block";
+
+    document.getElementById('MainContent')
+        .style.display = "none";
+    document.getElementById('WeightCalculator')
+        .style.display = "none";
+    document.getElementById('Brm')
+        .style.display = "none";
+    document.getElementById('1Rm')
+        .style.display = "none";
+    document.getElementById('Macro')
+        .style.display = "none";
+}
+
+function ShowMacro(){
+    document.getElementById('Macro')
+        .style.display = "block";
+
+    document.getElementById('MainContent')
+        .style.display = "none";
+    document.getElementById('WeightCalculator')
+        .style.display = "none";
+    document.getElementById('Brm')
+        .style.display = "none";
+    document.getElementById('BodyFatCal')
+        .style.display = "none";
+    document.getElementById('1Rm')
         .style.display = "none";
 }
 
@@ -138,4 +204,104 @@ function calculatePlates(){
     }
 
     return document.getElementById('WeightLoad').textContent = 'On each side load the bar with : \n25kg:' + red + "\n20kg:" + blue + "\n15kg:" + yellow + "\n10kg:" + green + "\n5kg:" + smallRed + "\n2.5kg:" + smallBlue + "\n1.25kg:" + black;
+}
+
+//Function for Macros
+function CalMacro(){
+    let Diet =document.getElementById('Diet').value;
+
+    //Reads in Macro values so that  they can be read and altered
+    let Protein = document.getElementById('myProtein');
+    let Fats = document.getElementById('myFats')
+    let Carbs = document.getElementById('myCarbs')
+
+    //Switch statements for different diets
+    switch (Diet){
+        case 'HighCarb':
+            Carbs.value =60
+            Protein.value=25
+            Fats.value=15
+            break;
+        case 'ModerateCarb':
+            Carbs.value =50
+            Protein.value=30
+            Fats.value=20
+            break;
+        case 'ZoneDiet':
+            Carbs.value =40
+            Protein.value=30
+            Fats.value=30
+            break;
+        case 'LowCarb':
+            Carbs.value =25
+            Protein.value=35
+            Fats.value=40
+            break;
+        case 'KetoDiet':
+            Carbs.value =5
+            Protein.value=30
+            Fats.value=60
+            break;
+        case 'Custom':
+            Carbs=document.getElementById('myCarbs')
+            Protein=document.getElementById('myProtein')
+            Fats=document.getElementById('myFats')
+            break;
+        default:
+            break;
+    }
+
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawPie);
+}
+
+function drawPie() {
+    // Get the values for Protein, Carbs, and Fats
+    let Protein = parseFloat(document.getElementById('myProtein').value);
+    let Carbs = parseFloat(document.getElementById('myCarbs').value);
+    let Fats = parseFloat(document.getElementById('myFats').value);
+
+    // Create the data table
+    let data = new google.visualization.DataTable();
+    data.addColumn('string', 'Macro');
+    data.addColumn('number', 'Breakdown');
+
+    // Add data rows
+    data.addRows([
+        ['Protein', Protein],
+        ['Carbs', Carbs],
+        ['Fats', Fats],
+    ]);
+
+    // Optional; add a title and set the width and height of the chart
+    let options = {
+        'title': 'Breakdown of ' + document.getElementById('Calories').value + ' calories',
+        'width': 350,
+        'height': 250
+    };
+
+    //calls nutri function
+    CalcNutri()
+
+    // Display the chart inside the <div> element with id="piechart"
+    let chart = new google.visualization.PieChart(document.getElementById('piechart'));
+    chart.draw(data, options);
+}
+
+function CalcNutri(){
+    let TotalCal=document.getElementById('Calories').value
+
+    let ProteinRatio =document.getElementById('myProtein').value
+    let CarbRatio=document.getElementById('myCarbs').value
+    let FatRatio=document.getElementById('myFats').value
+
+    let ProteinCals=TotalCal * (ProteinRatio/100)
+    let CarbCals=TotalCal * (CarbRatio/100)
+    let FatCals=TotalCal * (FatRatio/100)
+
+    let ProteinGram = ProteinCals/4
+    let CarbGram = CarbCals/4
+    let FatGram =FatCals/9
+
+    return document.getElementById('Breakdown').textContent="A break down of your Macros\nProtein has a total of " + ProteinCals.toFixed(2) + " Calories which is a total of " + ProteinGram.toFixed(2) +" Grams\n Carbs has a total of " + CarbCals.toFixed(2) + " Calories which is a total of " + CarbGram.toFixed(2) +"Grams\nFats have a total of " + FatCals.toFixed(2) + " Calories which is a total of " + FatGram.toFixed(2) +"Grams\n"
 }
