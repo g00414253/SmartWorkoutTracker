@@ -9,8 +9,6 @@ function ShowInfo(){
         .style.display = "none";
     document.getElementById('Brm')
         .style.display = "none";
-    document.getElementById('BodyFatCal')
-        .style.display = "none";
     document.getElementById('Macro')
         .style.display = "none";
 }
@@ -25,8 +23,6 @@ function ShowWeight(){
     document.getElementById('1Rm')
         .style.display = "none";
     document.getElementById('Brm')
-        .style.display = "none";
-    document.getElementById('BodyFatCal')
         .style.display = "none";
     document.getElementById('Macro')
         .style.display = "none";
@@ -43,8 +39,6 @@ function Show1Rm(){
         .style.display = "none";
     document.getElementById('Brm')
         .style.display = "none";
-    document.getElementById('BodyFatCal')
-        .style.display = "none";
     document.getElementById('Macro')
         .style.display = "none";
 }
@@ -56,24 +50,6 @@ function ShowBrm(){
     document.getElementById('MainContent')
         .style.display = "none";
     document.getElementById('WeightCalculator')
-        .style.display = "none";
-    document.getElementById('1Rm')
-        .style.display = "none";
-    document.getElementById('BodyFatCal')
-        .style.display = "none";
-    document.getElementById('Macro')
-        .style.display = "none";
-}
-
-function ShowBodyFatCal(){
-    document.getElementById('BodyFatCal')
-        .style.display = "block";
-
-    document.getElementById('MainContent')
-        .style.display = "none";
-    document.getElementById('WeightCalculator')
-        .style.display = "none";
-    document.getElementById('Brm')
         .style.display = "none";
     document.getElementById('1Rm')
         .style.display = "none";
@@ -90,8 +66,6 @@ function ShowMacro(){
     document.getElementById('WeightCalculator')
         .style.display = "none";
     document.getElementById('Brm')
-        .style.display = "none";
-    document.getElementById('BodyFatCal')
         .style.display = "none";
     document.getElementById('1Rm')
         .style.display = "none";
@@ -134,7 +108,8 @@ function drawChart() {
         title: 'Weight vs Reps',
         hAxis: {title: 'Weight (Kg)'},
         vAxis: {title: 'Repetitions'},
-        legend: 'none'
+        legend: 'none',
+        fontSize:15
     };
 
 // Draw
@@ -276,8 +251,10 @@ function drawPie() {
     // Optional; add a title and set the width and height of the chart
     let options = {
         'title': 'Breakdown of ' + document.getElementById('Calories').value + ' calories',
-        'width': 350,
-        'height': 250
+        'width': 400,
+        'height': 300,
+        is3D: true,
+        fontSize:15,
     };
 
     //calls nutri function
@@ -288,6 +265,7 @@ function drawPie() {
     chart.draw(data, options);
 }
 
+//Nutri breakdown function
 function CalcNutri(){
     let TotalCal=document.getElementById('Calories').value
 
@@ -304,4 +282,58 @@ function CalcNutri(){
     let FatGram =FatCals/9
 
     return document.getElementById('Breakdown').textContent="A break down of your Macros\nProtein has a total of " + ProteinCals.toFixed(2) + " Calories which is a total of " + ProteinGram.toFixed(2) +" Grams\n Carbs has a total of " + CarbCals.toFixed(2) + " Calories which is a total of " + CarbGram.toFixed(2) +"Grams\nFats have a total of " + FatCals.toFixed(2) + " Calories which is a total of " + FatGram.toFixed(2) +"Grams\n"
+}
+
+function calculateBMR(){
+    let gender = document.getElementById('gender').value;
+    let activity = document.getElementById('Activity').value;
+    let height = parseFloat(document.getElementById('Height').value);
+    let weight = parseFloat(document.getElementById('WeightBMR').value);
+    let age = parseInt(document.getElementById('Age').value);
+
+    if (isNaN(height) || isNaN(weight) || isNaN(age)) {
+        alert("Please enter valid numeric values for height, weight, and age.");
+        return;
+    }
+
+    let bmr;
+
+    if (gender === "male") {
+        bmr = 88.362 + (13.397 * weight) + (4.799 * height) - (5.677 * age);
+    } else if (gender === "female") {
+        bmr = 447.593 + (9.247 * weight) + (3.098 * height) - (4.330 * age);
+    } else {
+        alert("Please select a valid gender.");
+        return;
+    }
+
+    let activityFactor;
+
+    switch (activity) {
+        case "Dont":
+            activityFactor = 1.2;
+            break;
+        case "Once":
+            activityFactor = 1.375;
+            break;
+        case "1-3":
+            activityFactor = 1.55;
+            break;
+        case "3-5":
+            activityFactor = 1.725;
+            break;
+        case "6-7":
+            activityFactor = 1.9;
+            break;
+        case "7+":
+            activityFactor = 1.9; // Adjust as needed
+            break;
+        default:
+            alert("Please select a valid activity level.");
+            return;
+    }
+
+    let DayCals = bmr * activityFactor;
+
+    document.getElementById('resultBMR').innerHTML = "BMR: " + bmr.toFixed(2) + " calories per day<br>TDEE: " + DayCals.toFixed(2) + " calories per day";
 }
