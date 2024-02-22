@@ -51,9 +51,6 @@
     <button class="Selection" type="button" onclick="ShowBrm()" id="btnBrm">
         <a href="#Brm">BRM Calculator</a>
     </button>
-    <button class="Selection" type="button" onclick="ShowBodyFatCal()" id="btnBfc">
-        <a href="#BodyFatCal">Body fat calculator</a>
-    </button>
     <button class="Selection" type="button" onclick="ShowMacro()" id="btnMacro">
         <a href="#Macro">Macro Calculator</a>
     </button>
@@ -151,10 +148,33 @@
 
     <div id="Brm">
         <p>BRM</p>
-    </div>
+        <form>
+            <label for="gender">Choose your gender:</label>
+            <select id="gender" name="gender">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+        </form>
+        <form>
+            <label for="Activity">Do you workout:</label>
+            <select id="Activity" name="Activity">
+                <option value="Dont">I don't Workout</option>
+                <option value="Once">Once a week</option>
+                <option value="1-3">1-3 times a week</option>
+                <option value="3-5">3-5 times a week</option>
+                <option value="6-7">6-7 times a week</option>
+                <option value="7+">More than 7 times a week</option>
+            </select>
+        </form>
+        <label for="Height">Height(cm):</label>
+        <input type="number" id="Height" name="Height" min="0">
+        <label for="WeightBMR">Weight(kg):</label>
+        <input type="number" id="WeightBMR" name="Height" min="0">
+        <label for="Age">Age:</label>
+        <input type="number" id="Age" name="Height" min="0">
 
-    <div id="BodyFatCal">
-        <p>Body fat cal</p>
+        <button type="button" onclick="calculateBMR()">Calculate BMR</button>
+        <p id="resultBMR"></p>
     </div>
 
     <div id="Macro">
