@@ -22,6 +22,7 @@ body {
 #header {
     color: #dddddd;
     padding: 20px;
+    font-family: inherit;
     text-align: center;
     font-weight: bolder;
 }
@@ -29,34 +30,17 @@ body {
 /* Navbar container */
 .navbar {
     overflow: hidden;
+    text-align: center;
 }
 
 /* Links inside the navbar */
 .navbar a {
-    float: left;
+   display: inline-block;
     font-size: 16px;
     color: white;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
-}
-
-/* The dropdown container */
-.dropdown {
-    float: left;
-    overflow: hidden;
-}
-
-/* Dropdown button */
-.dropdown .dropbtn {
-    font-size: 16px;
-    border: none;
-    outline: none;
-    color: white;
-    padding: 14px 16px;
-    background-color: inherit;
-    font-family: inherit; /* Important for vertical align on mobile phones */
-    margin: 0; /* Important for vertical align on mobile phones */
 }
 
 .Selection{
@@ -67,42 +51,53 @@ body {
     background-color: inherit;
     font-family: inherit; /* Important for vertical align on mobile phones */
     margin: 0; /* Important for vertical align on mobile phones */
-    float: left;
 }
 /* Add a red background color to navbar links on hover */
 .navbar a:hover, .dropdown:hover .dropbtn {
     background-color: red;
 }
 
-/* Dropdown content (hidden by default) */
+/* Dropdown container */
+.dropdown {
+    display: inline-block;
+    border: black;
+}
+
+/* Dropdown button */
+.dropbtn {
+    font-size: 16px;
+    border: none;
+    outline: none;
+    color: white;
+    padding: 14px 16px;
+    background-color: inherit;
+    font-family: inherit;
+    margin: 0;
+}
+
+/* Dropdown content */
 .dropdown-content {
     display: none;
     position: absolute;
     background-color: #f9f9f9;
     min-width: 160px;
-    box-shadow:  8px 16px  rgba(0,0,0,0.2);
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
 }
 
 /* Links inside the dropdown */
 .dropdown-content a {
-    float: none;
     color: black;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
-    text-align: left;
-}
-
-/* Add a grey background color to dropdown links on hover */
-.dropdown-content a:hover {
-    background-color: #ddd;
 }
 
 /* Show the dropdown menu on hover */
 .dropdown:hover .dropdown-content {
     display: block;
 }
+
 /* Create three unequal columns that floats next to each other */
 .column {
     float: left;
@@ -190,23 +185,41 @@ body {
     display: none;
 }
 
+/*
 .btnUnknownCal{
-    background: none;
-    color: mediumblue;
+    background: darkgrey;
+    color: blue;
+    font: bold;
     text-align: left;
     font-size:13px;
+
 }
+*/
 
 #Breakdown {
     white-space: pre-line; /* or white-space: pre; */
 }
 
 
-#myChart{
+#piechart_container {
+    height: 300px; /* Set desired height */
+    border: 1px solid #ccc; /* Optional: Add border */
+    border-radius: 5px; /* Optional: Add border radius */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: Add box shadow */
     align-items: center;
-    text-align: center;
+    display: inline-block;
 }
 
+#chartContainer {
+    width: 600px; /* Set desired width */
+    height: 400px; /* Set desired height */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: Add box shadow */
+    border: 1px solid #ccc; /* Optional: Add border */
+    border-radius: 5px; /* Optional: Add border radius */
+    display: inline-block;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+}
 
 .row{
     display: flex;
@@ -241,6 +254,10 @@ body {
 
 }
 
+.button3 {background-color:orange;
+
+}
+
 /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 600px) {
     .column.side, .column.middle {
@@ -257,3 +274,6 @@ body {
     width: 100%;
     color: #dddddd;
 }
+
+/* Style for the sliders in macro calculator */
+

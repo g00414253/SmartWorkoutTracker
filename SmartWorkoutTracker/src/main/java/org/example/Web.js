@@ -113,7 +113,7 @@ function drawChart() {
     };
 
 // Draw
-    const chart = new google.visualization.LineChart(document.getElementById('myChart'));
+    const chart = new google.visualization.LineChart(document.getElementById('chartContainer'));
     chart.draw(data, options);
 }
 
@@ -178,7 +178,7 @@ function calculatePlates(){
         WeightIn -= 2.5;
     }
 
-    return document.getElementById('WeightLoad').textContent = 'On each side load the bar with : \n25kg:' + red + "\n20kg:" + blue + "\n15kg:" + yellow + "\n10kg:" + green + "\n5kg:" + smallRed + "\n2.5kg:" + smallBlue + "\n1.25kg:" + black;
+    return document.getElementById('WeightLoad').textContent = 'On each side load the bar with: \n25kg:' + red + "\n20kg:" + blue + "\n15kg:" + yellow + "\n10kg:" + green + "\n5kg:" + smallRed + "\n2.5kg:" + smallBlue + "\n1.25kg:" + black;
 }
 
 //Function for Macros
@@ -260,8 +260,8 @@ function drawPie() {
     //calls nutri function
     CalcNutri()
 
-    // Display the chart inside the <div> element with id="piechart"
-    let chart = new google.visualization.PieChart(document.getElementById('piechart'));
+    let container = document.getElementById('piechart_container');
+    let chart = new google.visualization.PieChart(container);
     chart.draw(data, options);
 }
 
@@ -281,7 +281,7 @@ function CalcNutri(){
     let CarbGram = CarbCals/4
     let FatGram =FatCals/9
 
-    return document.getElementById('Breakdown').textContent="A break down of your Macros\nProtein has a total of " + ProteinCals.toFixed(2) + " Calories which is a total of " + ProteinGram.toFixed(2) +" Grams\n Carbs has a total of " + CarbCals.toFixed(2) + " Calories which is a total of " + CarbGram.toFixed(2) +"Grams\nFats have a total of " + FatCals.toFixed(2) + " Calories which is a total of " + FatGram.toFixed(2) +"Grams\n"
+    return document.getElementById('Breakdown').textContent="Protein has a total of " + ProteinCals.toFixed(2) + " Calories which is a total of " + ProteinGram.toFixed(2) +" Grams\n Carbs has a total of " + CarbCals.toFixed(2) + " Calories which is a total of " + CarbGram.toFixed(2) +"Grams\nFats have a total of " + FatCals.toFixed(2) + " Calories which is a total of " + FatGram.toFixed(2) +"Grams\n"
 }
 
 function calculateBMR(){
@@ -337,3 +337,5 @@ function calculateBMR(){
 
     document.getElementById('resultBMR').innerHTML = "BMR: " + bmr.toFixed(2) + " calories per day<br>TDEE: " + DayCals.toFixed(2) + " calories per day";
 }
+
+
